@@ -19,15 +19,11 @@ async function main() {
   console.log('Deploying contracts with the account:', ownerAddress)
   console.log('Account balance:', formatEther(balance))
   // Deploy contract
-  const contractName = 'MyERC721'
-  const contractSymbol = 'MYERC721'
+  const contractName = 'RichRekt'
+  const contractSymbol = 'REKT'
   console.log(`Deploying ${contractName}...`)
   // Deploy the contract
-  const contract = await hre.viem.deployContract(contractName, [
-    contractName,
-    contractSymbol,
-    ownerAddress,
-  ])
+  const contract = await hre.viem.deployContract(contractName, [])
   // Print transaction details
   console.log(`${contractName} deployed to ${contract.address}`)
   // Wait for the chain to update
@@ -38,7 +34,7 @@ async function main() {
   try {
     await run('verify:verify', {
       address: contract.address,
-      constructorArguments: [contractName, contractSymbol, ownerAddress],
+      constructorArguments: [],
     })
   } catch (err) {
     console.log(

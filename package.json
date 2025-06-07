@@ -1,10 +1,10 @@
 {
-  "name": "@borodutch/smart-contract-starter",
+  "name": "@0xneged/rich-rekt-contract",
   "version": "0.0.1",
-  "description": "A starter for Solidity smart contracts for Ethereum",
+  "description": "Rich Rekt smart contract",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Borodutch/smart-contract-starter"
+    "url": "git+https://github.com/0xneged/rich-rekt-contract"
   },
   "license": "MIT",
   "np": {

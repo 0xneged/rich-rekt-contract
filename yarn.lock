@@ -5,52 +5,9 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@adraffy/ens-normalize@npm:1.10.1":
-  version: 1.10.1
-  resolution: "@adraffy/ens-normalize@npm:1.10.1"
-  checksum: 10c0/fdd647604e8fac6204921888aaf5a6bc65eabf0d2921bc5f93b64d01f4bc33ead167c1445f7de05468d05cd92ac31b74c68d2be840c62b79d73693308f885c06
-  languageName: node
-  linkType: hard
-
-"@adraffy/ens-normalize@npm:^1.10.1":
-  version: 1.11.0
-  resolution: "@adraffy/ens-normalize@npm:1.11.0"
-  checksum: 10c0/5111d0f1a273468cb5661ed3cf46ee58de8f32f84e2ebc2365652e66c1ead82649df94c736804e2b9cfa831d30ef24e1cc3575d970dbda583416d3a98d8870a6
-  languageName: node
-  linkType: hard
-
-"@babel/code-frame@npm:^7.0.0, @babel/code-frame@npm:^7.22.13":
-  version: 7.24.6
-  resolution: "@babel/code-frame@npm:7.24.6"
-  dependencies:
-    "@babel/highlight": "npm:^7.24.6"
-    picocolors: "npm:^1.0.0"
-  checksum: 10c0/c93c6d1763530f415218c31d07359364397f19b70026abdff766164c21ed352a931cf07f3102c5fb9e04792de319e332d68bcb1f7debef601a02197f90f9ba24
-  languageName: node
-  linkType: hard
-
-"@babel/helper-validator-identifier@npm:^7.24.6":
-  version: 7.24.6
-  resolution: "@babel/helper-validator-identifier@npm:7.24.6"
-  checksum: 10c0/d29d2e3fca66c31867a009014169b93f7bc21c8fc1dd7d0b9d85d7a4000670526ff2222d966febb75a6e12f9859a31d1e75b558984e28ecb69651314dd0a6fd1
-  languageName: node
-  linkType: hard
-
-"@babel/highlight@npm:^7.24.6":
-  version: 7.24.6
-  resolution: "@babel/highlight@npm:7.24.6"
-  dependencies:
-    "@babel/helper-validator-identifier": "npm:^7.24.6"
-    chalk: "npm:^2.4.2"
-    js-tokens: "npm:^4.0.0"
-    picocolors: "npm:^1.0.0"
-  checksum: 10c0/5bbc31695e5d44e97feb267f7aaf4c52908560d184ffeb2e2e57aae058d40125592931883889413e19def3326895ddb41ff45e090fa90b459d8c294b4ffc238c
-  languageName: node
-  linkType: hard
-
-"@borodutch/smart-contract-starter@workspace:.":
+"@0xneged/rich-rekt-contract@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@borodutch/smart-contract-starter@workspace:."
+  resolution: "@0xneged/rich-rekt-contract@workspace:."
   dependencies:
     "@eslint/compat": "npm:^1.2.9"
     "@eslint/eslintrc": "npm:^3.3.1"
@@ -95,6 +52,49 @@ __metadata:
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
+
+"@adraffy/ens-normalize@npm:1.10.1":
+  version: 1.10.1
+  resolution: "@adraffy/ens-normalize@npm:1.10.1"
+  checksum: 10c0/fdd647604e8fac6204921888aaf5a6bc65eabf0d2921bc5f93b64d01f4bc33ead167c1445f7de05468d05cd92ac31b74c68d2be840c62b79d73693308f885c06
+  languageName: node
+  linkType: hard
+
+"@adraffy/ens-normalize@npm:^1.10.1":
+  version: 1.11.0
+  resolution: "@adraffy/ens-normalize@npm:1.11.0"
+  checksum: 10c0/5111d0f1a273468cb5661ed3cf46ee58de8f32f84e2ebc2365652e66c1ead82649df94c736804e2b9cfa831d30ef24e1cc3575d970dbda583416d3a98d8870a6
+  languageName: node
+  linkType: hard
+
+"@babel/code-frame@npm:^7.0.0, @babel/code-frame@npm:^7.22.13":
+  version: 7.24.6
+  resolution: "@babel/code-frame@npm:7.24.6"
+  dependencies:
+    "@babel/highlight": "npm:^7.24.6"
+    picocolors: "npm:^1.0.0"
+  checksum: 10c0/c93c6d1763530f415218c31d07359364397f19b70026abdff766164c21ed352a931cf07f3102c5fb9e04792de319e332d68bcb1f7debef601a02197f90f9ba24
+  languageName: node
+  linkType: hard
+
+"@babel/helper-validator-identifier@npm:^7.24.6":
+  version: 7.24.6
+  resolution: "@babel/helper-validator-identifier@npm:7.24.6"
+  checksum: 10c0/d29d2e3fca66c31867a009014169b93f7bc21c8fc1dd7d0b9d85d7a4000670526ff2222d966febb75a6e12f9859a31d1e75b558984e28ecb69651314dd0a6fd1
+  languageName: node
+  linkType: hard
+
+"@babel/highlight@npm:^7.24.6":
+  version: 7.24.6
+  resolution: "@babel/highlight@npm:7.24.6"
+  dependencies:
+    "@babel/helper-validator-identifier": "npm:^7.24.6"
+    chalk: "npm:^2.4.2"
+    js-tokens: "npm:^4.0.0"
+    picocolors: "npm:^1.0.0"
+  checksum: 10c0/5bbc31695e5d44e97feb267f7aaf4c52908560d184ffeb2e2e57aae058d40125592931883889413e19def3326895ddb41ff45e090fa90b459d8c294b4ffc238c
+  languageName: node
+  linkType: hard
 
 "@bytecodealliance/preview2-shim@npm:0.17.2":
   version: 0.17.2
