@@ -1,0 +1,19 @@
+name: Build and lint
+on:
+  pull_request:
+    types: [synchronize, opened]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install modules
+        run: yarn
+        shell: bash
+      - name: Build code
+        run: yarn build
+        shell: bash
+      - name: Lint code
+        run: yarn lint
+        shell: bash
