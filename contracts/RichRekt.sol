@@ -56,7 +56,6 @@ contract RichRekt is Ownable {
     require(hasPendingRequest[player], "No pending game");
 
     uint256 roll = random % 100;
-    uint256 reward;
 
     // 10% chance
     if (roll < 10) {
