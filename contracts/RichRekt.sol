@@ -45,12 +45,14 @@ contract RichRekt is Ownable {
     }
 
     hasPendingRequest[msg.sender] = true;
-    players[msg.sender].lastPlayed = block.timestamp;
 
     emit GameRequested(msg.sender, referrerOf[msg.sender]);
   }
 
-  function settleGame(address player, uint256 random) external onlyOwner {
+  function settleGame(
+    address player,
+    uint256 random
+  ) external onlyOwner returns (uint256 reward, uint256 newPoints) {
     require(hasPendingRequest[player], "No pending game");
 
     uint256 roll = random % 100;
@@ -73,9 +75,11 @@ contract RichRekt is Ownable {
     }
 
     players[player].points += reward;
+    players[player].lastPlayed = block.timestamp;
     hasPendingRequest[player] = false;
 
     emit GameSettled(player, reward, referrer, refReward);
+    return (reward, players[player].points);
   }
 
   function getPlayer(
