@@ -23,7 +23,7 @@ async function main() {
   // const contractSymbol = 'REKT'
   console.log(`Deploying ${contractName}...`)
   // Deploy the contract
-  const contract = await hre.viem.deployContract(contractName, [])
+  const contract = await hre.viem.deployContract(contractName)
   // Print transaction details
   console.log(`${contractName} deployed to ${contract.address}`)
   // Wait for the chain to update
@@ -34,7 +34,6 @@ async function main() {
   try {
     await run('verify:verify', {
       address: contract.address,
-      constructorArguments: [],
     })
   } catch (err) {
     console.log(

@@ -3,7 +3,7 @@ pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract ServerRandomGame is Ownable {
+contract RichRekt is Ownable {
   struct Player {
     uint256 lastPlayed;
     uint256 points;
