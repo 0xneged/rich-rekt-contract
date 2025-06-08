@@ -1,12 +1,35 @@
+import * as dotenv from 'dotenv'
+import { cleanEnv, str } from 'envalid'
+import { inspect } from 'util'
+import { join } from 'path'
+import { writeFile } from 'fs/promises'
+
 import '@nomicfoundation/hardhat-toolbox-viem'
 import '@nomicfoundation/hardhat-viem'
-
-import * as dotenv from 'dotenv'
-import { HardhatUserConfig } from 'hardhat/config'
-import { cleanEnv, str } from 'envalid'
+import { HardhatUserConfig, task } from 'hardhat/config'
+import { TASK_COMPILE_SOLIDITY_EMIT_ARTIFACTS } from 'hardhat/builtin-tasks/task-names'
 import { generatePrivateKey } from 'viem/accounts'
 
 dotenv.config()
+
+type ContractMap = Record<string, { abi: object }>
+
+task(TASK_COMPILE_SOLIDITY_EMIT_ARTIFACTS).setAction(
+  async (args, env, next) => {
+    const output = await next()
+    const { artifacts } = env.config.paths
+    const promises = Object.entries(args.output.contracts).map(
+      async ([sourceName, contract]) => {
+        const file = join(artifacts, sourceName, 'abi.ts')
+        const { abi } = Object.values(contract as ContractMap)[0]
+        const data = `export const abi = ${inspect(abi, false, null)} as const`
+        await writeFile(file, data)
+      }
+    )
+    await Promise.all(promises)
+    return output
+  }
+)
 
 const randomPrivateKey = generatePrivateKey()
 
