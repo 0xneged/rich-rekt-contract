@@ -14,10 +14,17 @@
     "yarn": false
   },
   "files": [
-    "dist/typechain/**/*"
+    "artifacts/contracts/**/*.json",
+    "artifacts/contracts/**/*.ts",
+    "dist/typechain/**/*",
+    "contracts/**/*.sol"
   ],
   "main": "dist/typechain/index.js",
   "types": "dist/typechain/index.d.ts",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "build": "yarn clean && npx hardhat compile",
     "clean": "npx hardhat clean",
@@ -25,7 +32,7 @@
     "deploy": "npx hardhat run --network deploy scripts/deploy.ts",
     "eth-lint": "yarn solhint 'contracts/**/*.sol'",
     "lint": "prettier --check . && eslint --max-warnings 0 scripts test && yarn eth-lint",
-    "release": "np",
+    "release": "yarn build && yarn npm publish --tolerate-republish",
     "prepublishOnly": "yarn build && yarn tsc --skipLibCheck"
   },
   "devDependencies": {
