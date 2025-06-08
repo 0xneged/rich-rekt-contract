@@ -20,7 +20,7 @@ async function main() {
   console.log('Account balance:', formatEther(balance))
   // Deploy contract
   const contractName = 'RichRekt'
-  const contractSymbol = 'REKT'
+  // const contractSymbol = 'REKT'
   console.log(`Deploying ${contractName}...`)
   // Deploy the contract
   const contract = await hre.viem.deployContract(contractName, [])

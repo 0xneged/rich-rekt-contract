@@ -3,7 +3,7 @@ pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract RichRekt is Ownable {
+contract ServerRandomGame is Ownable {
   struct Player {
     uint256 lastPlayed;
     uint256 points;
@@ -11,15 +11,17 @@ contract RichRekt is Ownable {
 
   mapping(address => Player) public players;
   mapping(address => bool) public hasPendingRequest;
+  mapping(address => address) public referrerOf;
 
-  event GameRequested(address indexed player);
+  event GameRequested(address indexed player, address indexed referrer);
   event GameSettled(
     address indexed player,
     uint256 reward,
-    uint256 totalPoints
+    address indexed referrer,
+    uint256 refReward
   );
+  event Referred(address indexed player, address indexed referrer);
 
-  // sets owner from msg.sender
   constructor() Ownable(msg.sender) {}
 
   modifier canPlay(address player) {
@@ -31,11 +33,21 @@ contract RichRekt is Ownable {
     _;
   }
 
-  function requestPlay() external canPlay(msg.sender) {
+  function requestPlay(address referrer) external canPlay(msg.sender) {
+    // Only record the referrer once
+    if (
+      referrerOf[msg.sender] == address(0) &&
+      referrer != msg.sender &&
+      referrer != address(0)
+    ) {
+      referrerOf[msg.sender] = referrer;
+      emit Referred(msg.sender, referrer);
+    }
+
     hasPendingRequest[msg.sender] = true;
     players[msg.sender].lastPlayed = block.timestamp;
 
-    emit GameRequested(msg.sender);
+    emit GameRequested(msg.sender, referrerOf[msg.sender]);
   }
 
   function settleGame(address player, uint256 random) external onlyOwner {
@@ -44,24 +56,36 @@ contract RichRekt is Ownable {
     uint256 roll = random % 100;
     uint256 reward;
 
+    // 10% chance
     if (roll < 10) {
-      // 10% chance
       reward = 1000 + (random % 9001); // 1000–10000
     } else {
-      // 90% chance
       reward = 10 + (random % 91); // 10–100
+    }
+
+    // Apply referral bonus if applicable
+    address referrer = referrerOf[player];
+    uint256 refReward = 0;
+
+    if (referrer != address(0)) {
+      refReward = reward / 100; // 1%
+      players[referrer].points += refReward;
     }
 
     players[player].points += reward;
     hasPendingRequest[player] = false;
 
-    emit GameSettled(player, reward, players[player].points);
+    emit GameSettled(player, reward, referrer, refReward);
   }
 
   function getPlayer(
     address player
-  ) external view returns (uint256 lastPlayed, uint256 points) {
+  )
+    external
+    view
+    returns (uint256 lastPlayed, uint256 points, address referrer)
+  {
     Player memory p = players[player];
-    return (p.lastPlayed, p.points);
+    return (p.lastPlayed, p.points, referrerOf[player]);
   }
 }
