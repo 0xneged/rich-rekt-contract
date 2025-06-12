@@ -25,6 +25,12 @@ contract RichRekt is Ownable {
 
   constructor() Ownable(msg.sender) {}
 
+  function getReferrals(
+    address referrer
+  ) external view returns (address[] memory) {
+    return referralsOf[referrer];
+  }
+
   modifier canPlay(address player) {
     require(
       block.timestamp - players[player].lastPlayed >= 1 days,
