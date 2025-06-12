@@ -12,6 +12,7 @@ contract RichRekt is Ownable {
   mapping(address => Player) public players;
   mapping(address => bool) public hasPendingRequest;
   mapping(address => address) public referrerOf;
+  mapping(address => address[]) public referralsOf;
 
   event GameRequested(address indexed player, address indexed referrer);
   event GameSettled(
@@ -41,6 +42,7 @@ contract RichRekt is Ownable {
       referrer != address(0)
     ) {
       referrerOf[msg.sender] = referrer;
+      referralsOf[referrer].push(msg.sender);
       emit Referred(msg.sender, referrer);
     }
 
