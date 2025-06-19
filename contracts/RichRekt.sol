@@ -34,16 +34,17 @@ contract RichRekt is Ownable {
 
   modifier canPlay(address player) {
     require(
-      block.timestamp - players[player].lastPlayed >= playCooldownHours * 1 hours,
+      block.timestamp - players[player].lastPlayed >=
+        playCooldownHours * 1 hours,
       "Cooldown period has not passed yet"
     );
     require(!hasPendingRequest[player], "You already have a pending request");
     _;
   }
 
-  function setPlayCooldownHours(uint256 hours) external onlyOwner {
-    require(hours > 0, "Cooldown must be positive");
-    playCooldownHours = hours;
+  function setPlayCooldownHours(uint256 updatedHours) external onlyOwner {
+    require(updatedHours > 0, "Play cooldown must be positive");
+    playCooldownHours = updatedHours;
   }
 
   function requestPlay(address referrer) external canPlay(msg.sender) {
