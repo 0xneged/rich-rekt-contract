@@ -1,6 +1,6 @@
 {
   "name": "@0xneged/rich-rekt-contract",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Rich Rekt smart contract",
   "repository": {
     "type": "git",
@@ -28,7 +28,6 @@
   "scripts": {
     "build": "yarn clean && npx hardhat compile",
     "clean": "npx hardhat clean",
-    "test": "echo 'Skipping tests'",
     "deploy": "npx hardhat run --network deploy scripts/deploy.ts",
     "eth-lint": "yarn solhint 'contracts/**/*.sol'",
     "lint": "prettier --check . && eslint --max-warnings 0 scripts test && yarn eth-lint",

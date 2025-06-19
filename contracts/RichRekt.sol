@@ -33,8 +33,8 @@ contract RichRekt is Ownable {
 
   modifier canPlay(address player) {
     require(
-      block.timestamp - players[player].lastPlayed >= 1 days,
-      "You can play once every 24 hours"
+      block.timestamp - players[player].lastPlayed >= 6 hours,
+      "You can play once every 6 hours"
     );
     require(!hasPendingRequest[player], "You already have a pending request");
     _;
@@ -98,5 +98,9 @@ contract RichRekt is Ownable {
   {
     Player memory p = players[player];
     return (p.lastPlayed, p.points, referrerOf[player]);
+  }
+
+  function vanishTimestamp(address user) external onlyOwner {
+    players[user].lastPlayed = 0;
   }
 }

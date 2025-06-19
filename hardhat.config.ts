@@ -6,7 +6,7 @@ import { writeFile } from 'fs/promises'
 
 import '@nomicfoundation/hardhat-toolbox-viem'
 import '@nomicfoundation/hardhat-viem'
-import { HardhatUserConfig, task } from 'hardhat/config'
+import { type HardhatUserConfig, task } from 'hardhat/config'
 import { TASK_COMPILE_SOLIDITY_EMIT_ARTIFACTS } from 'hardhat/builtin-tasks/task-names'
 import { generatePrivateKey } from 'viem/accounts'
 
